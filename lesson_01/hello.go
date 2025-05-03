@@ -1,4 +1,4 @@
-package hello
+package lesson_01
 
 import (
 	"strings"

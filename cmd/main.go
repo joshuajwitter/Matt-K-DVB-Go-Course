@@ -1,10 +1,8 @@
 package main
 
-import (
-	"hello"
-)
+import "hello/lesson_04"
 
 func main() {
-	hello.DoOtherThings()
+	lesson_04.BarString()
 	// fmt.Println(hello.Say(os.Args[1:])) // don't include the first item as it is the program name
 }

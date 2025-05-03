@@ -20,4 +20,13 @@ Lesson 3:
   - Can only be a number, string or boolean
   - Are immutable (of course) given concurrency of Go
 - You must cast explicitly (thank god)
-- 
+
+Lesson 4:
+- Strings are immutable (like Java)
+- "Rune" is the equivalent of a character
+  - It is a 32 bit int
+- A string is a UTF-8 sequence of Unicode characters
+- The length of a string is the number of bytes that are needed to store the string, not necessarily the number of runes in the string
+- When you define a string in go, you give it a pointer to the data and a length in bytes. This is in contrast to other languages that have a null byte where you would need to traverse the whole string to get the null byte
+- You can use `utf8.RuneCountInString` to determine the number of runes in a string
+- Strings are passed by reference, thus they are not copied

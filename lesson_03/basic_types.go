@@ -1,4 +1,4 @@
-package hello
+package lesson_03
 
 import (
 	"fmt"
