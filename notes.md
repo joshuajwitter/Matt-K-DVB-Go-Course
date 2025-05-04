@@ -56,7 +56,7 @@ Lesson 5:
   - Useful as function parameters
   - Use `make` to make a slice of 
   - Strings are immutable, slices are mutable
-  - If you go over the capacity (cap) of a slice it will need to be reallocated
+  - If you go over the capacity (cap) of a slice it will need to be reallocated, but don't worry, it gets reallocated to twice the size
   - When you append you always reassign the result of append, like this: `c=append(c,d)`
 - Maps (keys to values)
   - Not consecutive in memory
@@ -68,14 +68,64 @@ Lesson 5:
   - There are two ways to index a map, one that provides the value and one that lets you know if the key exists
   - You can delete keys with `delete(m,k)` which succeeds even if the key does not exist
 - Make nil useful
-  - len, cap and range can all be called on nil values fro 
+  - len, cap and range can all be called on nil values 
   - The idea that we can make nil safe and useful is really helpful
+  - Essentially nil maps are read-only, empty maps
 
-Further research:
+Lesson 5a: "Understanding nil" by Francesc Campoy
+- https://youtu.be/ynoY2xz-F8s?si=6_IyzvfKN-YnI9lm
+- nil: nothing
+- null: not any
+- nil is a kind of zero
+- nil is not a keyword and you can define it
+- nil has no type
+  - You cannot defined a variable with type nil
+- It is the zero value for many types in Go
+- pointers in Go point to a position in memory
+  - Similar to C++ but you cannot do pointer arithmetic (memory safety)
+    - unless you use `unsafe`
+  - A nil pointer points to nothing
+- Slice has a pty, len, and cap
+- Interfaces
+  - An interface is not a pointer
+  - It has a type and a value
+  - So the value is nil
+  - When is nil not nil?
+    - ```go
+      func do() error {
+        var err *doErr
+        return err // this is an interface that points to nil
+      }
+    
+      func main() {
+        err := do() // err will not be ni, it will just point to nil
+        fmt.Println(err == nil)
+    }
+    ```
+  - The lessons here: 
+    - Do not declare concrete error vars
+    - Do not return concrete error types
+  - nil is different depending on the type that is referencing nil
+    - nil pointers point to nothing
+    - nil slices have no backing array
+    - nil maps, functions and channels ar enot initialized
+    - nil interfaces have no value assigned, not even a nil pointer
+  - How are nil values used?
+    - pointers
+      - you can make a pointer to an int, for example, and set it to nil
+      - dereferencing it leads to a panic `*p`
+  - See the code example in lesson05a.go
+    - Try to make your default values useful. nil can be more useful than 0, the default value returned for most types
+    - I learned about "method receiver" functions, which are like extension in Kotlin or Swift, see the Sum() function
+
+Further study:
 - Hash tables, confirm how they work
 - Rob Pike
+  - Go Proverbs
 - Matt Holiday
+- Francesc Campoy (understanding nil)
 - Compare a lambda expression to a closure
+- Read the Go language specification
 
 Weird things about Go:
 - You cannot insert into a nil map, but you can read from it (always returns the default value of the map's datatype)
