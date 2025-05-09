@@ -200,6 +200,21 @@ Lesson 8:
   - Named return values can create a defer gotcha, see the code example
     - You can do something like `doIt() (a int)` which automatically creates a variable in the scope of the function that you can manipulate. You can then have a "naked return" which is a simple "return" without anything after it, this returns the named variable. This is not recommended by the teacher because it is not easy to understand
 
+Lesson 9:
+- Closures
+  - Scope vs. Lifetime
+    - Scope
+      - Static, it's a compile time thing
+        - It's about who can reference the thing 
+    - Lifetime
+      - Depends on program execution (runtime)
+      - See the code example, once the compiler sees that a reference is used outside of a scope it does an "escape analysis" and that variable will have a lifetime as long as the function, and will put this value onto the heap
+      - So it is possible for a variable to have a lifetime that exceed the lifetime of its scope
+  - A closure is like a descriptor, see the example code
+    - It has a function and an environment (the variables it closes over)
+    - This is pretty much the same as I previously understood closures
+  - You can easily make a slice of functions for example, see the code example
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
