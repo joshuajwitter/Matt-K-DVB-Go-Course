@@ -171,6 +171,35 @@ Lesson 7:
 - io/ioutil is really useful for reading an entire file for example
 - strconv has other utilities to parse strings to numbers for example, like parsing CSV
 
+Lesson 8:
+- Functions
+  - Functions are “first class” objects; you can:
+    - Define them — even inside another function
+    - Create anonymous function literals
+    - Pass them as function parameters / return values
+    - Store them in variables
+    - Store them in slices and maps (but not as keys)
+    - Store them as fields of a structure type
+    - Send and receive them in channels
+    - Write methods against a function type
+    - Compare a function var against nil
+  - Parameters
+    - In theory, it seems that some datatypes are pass by reference, and some passed by value
+      - But that's not actually true. All parameters are passed by copying something (i.e. by value)
+      - If the thing being copied is a pointer or descriptor, then the shared backing store (array, hashtable, etc) can be changed through it, thus we think of it as "by reference"
+      - Remember, slice and map are descriptors. You are copying the DESCRIPTOR and not the actual reference. A slice or map CONTAINS a reference to the underlying data
+  - Recursion
+    - We have an example of this previously with the tree walking
+  - Call Stack is the same as usual
+  - Deferred Execution
+    - The `defer` statement captures a function call to run later
+      - This means we can write less code and cleaner code
+      - So if we add `defer f.Close()` to any point in the function, at the end of the function's execution we will run the deferred closing
+      - If we have more than one, they will run in LIFO order
+      - Always operates on a function scope, not a block scope
+  - Named return values can create a defer gotcha, see the code example
+    - You can do something like `doIt() (a int)` which automatically creates a variable in the scope of the function that you can manipulate. You can then have a "naked return" which is a simple "return" without anything after it, this returns the named variable. This is not recommended by the teacher because it is not easy to understand
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
