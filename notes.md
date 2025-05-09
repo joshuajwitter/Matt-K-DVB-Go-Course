@@ -118,6 +118,52 @@ Lesson 5a: "Understanding nil" by Francesc Campoy
     - Try to make your default values useful. nil can be more useful than 0, the default value returned for most types
     - I learned about "method receiver" functions, which are like extension in Kotlin or Swift, see the Sum() function
 
+Lesson 6:
+- All if-then statements require braces
+- You can use short assignment operators in if statements
+- for loops work just like C
+- Go only has one loop, the for loop
+- There is a range operator that allows you to range over a slice or a map, remember it gives you one or two values, if you want the index or not
+- Maps are unordered since they are based off of a hashtable, so if you get the keys they will be in a random order. This is why Go is so fast, it doesn't order things like this and makes you do it if you need to
+- break and continue work as you would expect
+- You can use loop labels, such as "outer:" to conditionally break out of inner loops, I have seen this in other languages
+- switch statements are available as syntactic sugar to replace more complicated for loops. 
+- There is no break statement and there is no fallthrough, this makes everything really easy to understand
+- Go does not make you cover every enumerated case (there are no actual enums in Go)
+- Short declaration operator can only be used in functions
+- You can declare anything at package scope
+- Every name that is capitalized is exported to every other package, otherwise it is private to the package
+- Every file in a package must include the things it needs, unused imports are an error
+- Cyclic dependencies are prohibited (move common dependencies to a third package or eliminate them think tree structure, not graph (a tree is a graph with no cycles), this speeds up the compile time and how the program is initialized
+  - Variables are often setup before `main` is executed, and we would not know how to order them
+- Packages as a concept is really about information hiding
+  - A good package encompasses deep functionality behind a simple API
+  - The Unix file API is perhaps the best example of this model
+  - There are only 5 functions but there is so much complexity that they hide
+- Declarations
+  - You can declare `const` variables
+  - You can declare `types`
+  - If you do not specifically use a type, the compiler must be able ot infer the type at compile time from the assigned value
+- "Structural Typing"
+  - See code example in lesson06.go
+  - "Duck typing" (if it looks like a duck, and quacks like a duck, it is a duck)
+  - It's the same type if it has the same structure or behavior:
+    • arrays of the same size and base type
+    • slices with the same base type
+    • maps of the same key and value types
+    • structs with the same sequence of field names/types
+    • functions with the same parameter & return types
+- Go keeps "arbitrary" precision for literal values (256 bits or more)
+  • Integer literals are untyped
+  • assign a literal to any size integer without conversion
+  • assign an integer literal to float, complex also
+  • Ditto float and complex; picked by syntax of the literal 2.0 or 2e9 or 2.0i or 213
+  • Mathematical constants can be very precise
+  Pi = 3.14159265358979323846264338327950288419716939937510582097494459
+  • Constant arithmetic done at compile time doesn't lose precision
+- Only one true overloaded operator in Go, which is the `+`, which adds numbers or concats strings
+- Again, no truthy or falsy (thank you God)
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
