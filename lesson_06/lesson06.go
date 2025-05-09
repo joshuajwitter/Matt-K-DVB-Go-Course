@@ -62,5 +62,7 @@ func testingSomeStructuralTyping() {
 
 	c := [4]int{}
 
-	a = c // this is not ok
+	fmt.Printf("a is %a, c is %d\n", a, c)
+
+	//a = c // this is not ok
 }

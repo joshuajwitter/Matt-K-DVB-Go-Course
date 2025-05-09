@@ -148,21 +148,28 @@ Lesson 6:
   - See code example in lesson06.go
   - "Duck typing" (if it looks like a duck, and quacks like a duck, it is a duck)
   - It's the same type if it has the same structure or behavior:
-    • arrays of the same size and base type
-    • slices with the same base type
-    • maps of the same key and value types
-    • structs with the same sequence of field names/types
-    • functions with the same parameter & return types
+    - arrays of the same size and base type
+    - slices with the same base type
+    - maps of the same key and value types
+    - structs with the same sequence of field names/types
+    - functions with the same parameter & return types
 - Go keeps "arbitrary" precision for literal values (256 bits or more)
-  • Integer literals are untyped
-  • assign a literal to any size integer without conversion
-  • assign an integer literal to float, complex also
-  • Ditto float and complex; picked by syntax of the literal 2.0 or 2e9 or 2.0i or 213
-  • Mathematical constants can be very precise
+  - Integer literals are untyped
+  - assign a literal to any size integer without conversion
+  - assign an integer literal to float, complex also
+  - Ditto float and complex; picked by syntax of the literal 2.0 or 2e9 or 2.0i or 213
+  - Mathematical constants can be very precise
   Pi = 3.14159265358979323846264338327950288419716939937510582097494459
-  • Constant arithmetic done at compile time doesn't lose precision
+  - Constant arithmetic done at compile time doesn't lose precision
 - Only one true overloaded operator in Go, which is the `+`, which adds numbers or concats strings
 - Again, no truthy or falsy (thank you God)
+
+Lesson 7:
+- Uses the standard three streams and the basic format codes that we are already familiar with (%s, %d, etc)
+- %T is the type, %v is the value, we used this earlier
+- This lesson focused on printing things to various outputs, the code is mainly in lesson07.go, but it's pretty basic
+- io/ioutil is really useful for reading an entire file for example
+- strconv has other utilities to parse strings to numbers for example, like parsing CSV
 
 Further study:
 - Hash tables, confirm how they work
