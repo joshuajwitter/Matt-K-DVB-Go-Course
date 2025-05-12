@@ -224,6 +224,11 @@ Lesson 10: Slices in more details
   - When you make a slice that uses the two argument slice operator to slice an existing slice, the underlying capacity of the new slices is the same as the original slice, see from the code example, there is a special three argument operator to make a new slice with a set capacity
 - See the code for the rest of the lesson
 
+Lesson 11: Homework #2
+- Exercise 5.5 from GOPL: implement `countWordsAndImages`
+  - Given some HTML as raw text, parse it into a document and then call a counting routine to detect and count words and images
+  - See the code for my solution
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
