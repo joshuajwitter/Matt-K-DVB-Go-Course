@@ -229,6 +229,28 @@ Lesson 11: Homework #2
   - Given some HTML as raw text, parse it into a document and then call a counting routine to detect and count words and images
   - See the code for my solution
 
+Lesson 12: Structs, struct tags and JSON
+- Code shows everything
+- There is a limitation on maps. Maps store their underlying elements in a random order that can change, especially when the map is updated with new elements. So trying to hold a pointer to an element of a map is not a good idea. Therefore, if you want to store a map of structs you should actually store a pointer to the structs. A slice of structs would be different, as they are in a fixed order. So we would be able to hold a pointer to an actual struct instance that is part of a slice of structs
+- Most structs are going to be given type names, but you can create anonymous structs like in `secondPart`
+- We can assign one to the other even through they are anonymous types because they are structurally the same, this does not work for named types though
+- Two `struct` types are compatible if
+  - The fields have the same types and names
+  - The field names are in the same order
+  - They have the same tags (see `thirdPart` for tags)
+- A struct may be copied or passed as a parameter in its entirety
+- A struct is comparable if all its fields are comparable
+- A zero value for a struct is the "zero value" for each field
+- Structs are passed by value unless a pointer is used
+  - If you don't pass by pointer you will not be able to modify the struct in a function
+  - The way that the pointer syntax works is that you don't need to use the star notation when referencing fields, see the `employee.Boss` on line 56 in the lesson code file for an example
+- The `Buffer` struct is written in a way that "makes the zero value useful" like in the video we watched earlier. It has sensible initial values that are immediately ready to be used
+- You can create a struct with no fields, it a singleton that Go always have, an empty struct points to this reference
+- Struct tags and JSON
+  - Encoding and decoding JSON is shown in `fourthPart` which includes hiding missing JSON fields in some instance, this is a nice real world example
+  - You can also change the field names by specifying them in the tag
+- You can also use struct tags to convert struct field names to database (), it's a good example of another use of tag but it's unsafe because of injection attacks, use a library :-) 
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
