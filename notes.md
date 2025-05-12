@@ -251,6 +251,42 @@ Lesson 12: Structs, struct tags and JSON
   - You can also change the field names by specifying them in the tag
 - You can also use struct tags to convert struct field names to database (), it's a good example of another use of tag but it's unsafe because of injection attacks, use a library :-) 
 
+Lesson 14: Reference & Value Semantics
+- Pointers vs Values
+  - Pointers are shared, not copied
+  - Values are copied, not shared
+  - Value semantics lead to higher integrity, particularly with concurrent (don't share, especially with concurrency)
+  - Pointer semantics may be more efficient
+- Advantages of pointers
+  - Some objects can't be copied safely (mutex for instance)
+  - Some objects are too large to be copied efficiently (consider pointers when size > 64 bytes)
+  - Some methods need to mutate the receiver 
+  - When decoding protocol data into an object (JSON, etc; often in a variable argument list) see the example in lesson 12 unmarshalling JSON
+  - When using a pointer to signal a null object
+- A struct with a mutex MUST be passed by reference
+- It's ok to have a function that takes in a value parameter and return an updated value, you can just assign it back to the variable that was passed in by value, think functional programming. Mutating inputs in a function always makes me worry 
+- Stack allocation is more efficient
+  - Accessing a variable directly is more efficient than following a pointer
+  - Accessing a dense sequence of data is more efficient than sparse data (an array is faster than a linked list, etc)
+- Heap allocation
+  - Go would prefer to allocation on the stack, but sometimes can't, some examples:
+    - A function returns a pointer to a local object
+    - A local object is captured in a function closure
+    - A pointer to a local object is sent via a channel
+    - Any object is assigned into an interface
+    - Any object whose size is variable at runtime (e.g. slices)
+  - Go uses "escape analysis" to determine what needs heap allocation
+    - You can run with `-gcflags -m=2` to see the analysis
+- The `new` operator in Go does not work like it does in JVM based languages. We will be digging into it further later. The part we care about here is that there is not an easy way to tell if something using `new` will end up on the heap or stack.
+- The value returned by `range` is always a copy, use the index if you want to mutate the element
+  ```
+  for i := range things {
+    things[i].which = whatever
+  }
+  ``` 
+- Any time a function mutates a slice we must return the updated value from the function
+- It is risky to keep a pointer to a slice element since they will re-allocate if over capacity
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
