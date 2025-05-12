@@ -1,9 +1,9 @@
 package main
 
 import (
-	"hello/lesson_09"
+	"hello/lesson_10"
 )
 
 func main() {
-	lesson_09.Lesson09()
+	lesson_10.Lesson10()
 }

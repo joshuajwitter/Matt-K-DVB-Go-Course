@@ -215,6 +215,15 @@ Lesson 9:
     - This is pretty much the same as I previously understood closures
   - You can easily make a slice of functions for example, see the code example
 
+Lesson 10: Slices in more details
+- Nil slice versus empty slice
+  - See the code example, this can be useful when translating slices to json
+  - Don't use `if a == nil` instead use `if len(a) == 0`
+    - You can always ask the length of a nil slice
+- Length vs capacity and the slice operator
+  - When you make a slice that uses the two argument slice operator to slice an existing slice, the underlying capacity of the new slices is the same as the original slice, see from the code example, there is a special three argument operator to make a new slice with a set capacity
+- See the code for the rest of the lesson
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
