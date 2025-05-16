@@ -287,6 +287,22 @@ Lesson 14: Reference & Value Semantics
 - Any time a function mutates a slice we must return the updated value from the function
 - It is risky to keep a pointer to a slice element since they will re-allocate if over capacity
 
+Lesson 15: HTTP Networking
+- The Go standard library has many packages for making web servers:
+  That includes:
+  - client & server sockets
+  - route multiplexing
+  - TTP and HTML, including HTML templates
+  - JSON and other data formats
+  - cryptographic security
+  - SQL database access
+  - compression utilities
+  - image generation 
+  - There are also lots of 3rd-party packages with improvements
+- An HTTP handler function is an instance of an interface, you can see in the code example file how we implemented this interface
+- This is also the lesson that introduces us to methods, see the `ServeHTTP` method on the `HandlerFunc` type
+- 
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
