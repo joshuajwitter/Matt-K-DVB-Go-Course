@@ -100,8 +100,7 @@ Lesson 5a: "Understanding nil" by Francesc Campoy
       func main() {
         err := do() // err will not be ni, it will just point to nil
         fmt.Println(err == nil)
-    }
-    ```
+    }```
   - The lessons here: 
     - Do not declare concrete error vars
     - Do not return concrete error types
@@ -301,7 +300,11 @@ Lesson 15: HTTP Networking
   - There are also lots of 3rd-party packages with improvements
 - An HTTP handler function is an instance of an interface, you can see in the code example file how we implemented this interface
 - This is also the lesson that introduces us to methods, see the `ServeHTTP` method on the `HandlerFunc` type
-- 
+
+Lesson 16: Homework #3
+- Essentially we are doing an exercise where we fetch data using JSON from XKCD
+  - Exercise 4.12 from GOPL: fetching from the web
+- I did the exercise as he suggested without looking ahead, so it is written in a different way than Matt did, but it still works and uses the JSON marshaling, file IO, networking etc from previous exercises
 
 Further study:
 - Hash tables, confirm how they work
