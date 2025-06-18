@@ -306,6 +306,19 @@ Lesson 16: Homework #3
   - Exercise 4.12 from GOPL: fetching from the web
 - I did the exercise as he suggested without looking ahead, so it is written in a different way than Matt did, but it still works and uses the JSON marshaling, file IO, networking etc from previous exercises
 
+Lesson 17: Go does OOP
+- Go is an Object Oriented language
+- Inheritance has conflicting meanings
+  - In theory, inheritance should always imply subtyping, the subclass should be a "kind of" the superclass
+  - See the Liskov substitution principle
+  - As usual "Composition over inheritance" is a good rule for OOP, also remember the "Inheritance tax" that we've seen a bunch of times
+- Classes in Go
+  - Not having classes can be liberating
+  - Go allows defining methods on any user-defined type, rather than only a "class"
+  - Go allows any object to implement the method(s) of an interface, not just a "subclass"
+- We don't call it "class oriented programming" or "interface oriented programming", just because Go doesn't provide those doesn't mean it is not object oriented
+
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
