@@ -382,7 +382,7 @@ Lesson 20: Interfaces and Methods in Detail
 
 Lesson 21: Homework Problem #4
 - We are given some example starting code and asked to fill in the functions, starting code is here: https://github.com/matt4biz/go-class-exer-7.11/blob/start/part1/main.go
-- 
+- The solution that I implemented used TDD, but I noticed when I watched the video solution later that it didn't match the output format exactly. We might need to adjust it later when we do the concurrency update. As mentioned in the video this code is no thread safe.
 
 Further study:
 - Hash tables, confirm how they work
