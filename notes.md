@@ -318,6 +318,18 @@ Lesson 17: Go does OOP
   - Go allows any object to implement the method(s) of an interface, not just a "subclass"
 - We don't call it "class oriented programming" or "interface oriented programming", just because Go doesn't provide those doesn't mean it is not object oriented
 
+Lesson 18: Methods and Interfaces
+- An interface specifies abstract behavior in terms of methods
+- "Concrete types" offer methods that satisfy the interface
+- A method is a special type of function, it has an invisible parameter which is called "self" or "this" that references the entity itself 
+- Again, we can put methods on any user-declared type, and only on user defined types
+- Any object that provides the correct methods to satisfy the interface is considered a concrete implementation of an interface that defines those methods
+- A method may take a pointer or value receiver, but not both
+- Example he showed was how `io.Copy` takes in two interfaces as its parameters, and we called it with concrete types
+- All methods must be present to satisfy an interface, this is why is pays to keep interfaces as small as possible
+- We can do composition with interfaces, see the `io.ReadWriter` interface for example, small interfaces with composition where needed are more flexible
+- All methods for a given type must be defined in the same package where the type is declared, this allows a package importing the type to know all of the methods at compile time
+  - We can extend the type in a new package through embedding though (a struct that embeds another struct)
 
 Further study:
 - Hash tables, confirm how they work
@@ -325,6 +337,7 @@ Further study:
   - Go Proverbs
 - Matt Holiday
 - Francesc Campoy (understanding nil)
+  - This was a pretty good video
 - Compare a lambda expression to a closure
 - Read the Go language specification
 
