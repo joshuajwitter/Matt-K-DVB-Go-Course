@@ -380,6 +380,9 @@ Lesson 20: Interfaces and Methods in Detail
      - These are commonly use, especially in how the formatted I/O routines can print any type
      - Reflection is needed to determine what the concrete type is, this will be discussed later. Essentially you will need to use reflection to find out what methods are really available, because "the empty interface says nothing" (Rob Pike)
 
+Lesson 21: Homework Problem #4
+- We are given some example starting code and asked to fill in the functions, starting code is here: https://github.com/matt4biz/go-class-exer-7.11/blob/start/part1/main.go
+- 
 
 Further study:
 - Hash tables, confirm how they work
