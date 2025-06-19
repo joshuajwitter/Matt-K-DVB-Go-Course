@@ -331,6 +331,13 @@ Lesson 18: Methods and Interfaces
 - All methods for a given type must be defined in the same package where the type is declared, this allows a package importing the type to know all of the methods at compile time
   - We can extend the type in a new package through embedding though (a struct that embeds another struct)
 
+Lesson 19: Composition
+- The fields of an embedded struct are promoted to the level of the embedding structure
+- You can embed a type into another type even if it is not a struct, something like []int etc
+- Even when you embed a pointer to a type inside of the struct its methods will be promoted
+- Instead of thinking that a struct that is composed of two or more types "inherits" from those types, think instead, "the methods of those types are promoted into the composed struct"
+- Important: Nothing in Go prevents calling a method with a nil receiver (see Sum() in the example code). This would be the equivalent of null.toString() in Java
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike
