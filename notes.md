@@ -338,6 +338,49 @@ Lesson 19: Composition
 - Instead of thinking that a struct that is composed of two or more types "inherits" from those types, think instead, "the methods of those types are promoted into the composed struct"
 - Important: Nothing in Go prevents calling a method with a nil receiver (see Sum() in the example code). This would be the equivalent of null.toString() in Java
 
+Lesson 20: Interfaces and Methods in Detail
+- Nil interfaces
+  - An interface variable is nil until it is initialized
+  - It really has two parts
+    - A value or pointer of some type
+    - A pointer to type information so the correct actual method can be identified
+  - Examples: 
+    - `var r io.Reader` is nil
+    - `var b *bytes.Buffer` is also nil
+    - When we perform `r = b`, `r` is no longer nil but it has a nil pointer to a Buffer
+ - Important: We can see from the examples that an interface variable is nil ONLY if both parts are nil
+ - Remember from the last lesson: we can make a method on the Buffer class that can still be called if the value of the Buffer is nil
+ - Something that demonstrates this: `Error` is really an interface
+   - We call `Error` a "special type" but it's really an interface
+   - We can compare it to `nil` unless we make a mistake
+     - The mistake is to store a nil pointer to a concrete type in the error variable
+   - To give more context, when we execute a function, sometimes the function returns two results, the computed result and an error. We first check the error when we return from the function and compare it to nil. If it is not nil, we know the function succeeded. See the example in `partOne()` of the notes for this section
+     - Essentially you want to write your functions (which return an error) to return a `nil` error (interface) rather than a concrete pointer to an error type
+ - Something we talked about earlier is that pointer methods may be called on non-pointers and vice versa, Go will automatically use * or & as needed, exception: & may only be applied to objects that are addressable (which makes sense), as an R-Value in an assignment cannot be a pointer receiver, because it is not addressable. All other assignments work.
+ - If one method of a type takes a pointer receiver, then (in general) all its methods should take pointers as objects of that type are not safe to copy, like Buffers for example
+ - Currying functions
+   - Currying is a concept from functional programming where a function that takes multiple arguments (like a and b) is transformed into a series of functions, each taking one argument at a time. Instead of calling a function like Add(1, 2) all at once, currying lets you "partially apply" the function by giving it one argument first, which returns a new function that waits for the next argument.
+   - See `partTwo()` in the lesson code for how it is practically used
+ - Method values
+   - A selected method may be passed similar to a closure, the receiver is closed over at that point
+   - See the code examples, it's pretty clear how it works
+ - Interfaces in practice
+   - Let consumers define interfaces (what minimal behavior do they require?)
+   - Reuse standard interfaces wherever possible
+   - Keep interface declarations small ("the bigger the interface, the weaker the abstraction")
+   - Compose one-method interfaces into larged interfaces (if needed)
+   - Avoid coupling interfaces to particular types/implementations
+   - Accept interfaces, but return concrete types (let the consumer of the return type decide how to use it)
+   - "Be liberal in what you accept, be conservative in what you return"
+     - Put the least restriction on what parameters you accept (the minimal interface), for example, don't require `ReadWriteCloser` if you only need to read
+     - Avoid restricting the use of your return type (the concrete value you return might fit with many interfaces), for example, returning `*os.File` is less restrictive that returning `io.ReadWriteCloser` because files have other useful methods
+     - Returning `error` is a good example of an exception to this rule, remember we handle errors by looking for a nil value *for the interface*
+   - Empty interfaces
+     - The `interface{}` type has no methods and can be satisfied by literally anything
+     - These are commonly use, especially in how the formatted I/O routines can print any type
+     - Reflection is needed to determine what the concrete type is, this will be discussed later. Essentially you will need to use reflection to find out what methods are really available, because "the empty interface says nothing" (Rob Pike)
+
+
 Further study:
 - Hash tables, confirm how they work
 - Rob Pike

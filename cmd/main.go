@@ -1,9 +1,9 @@
 package main
 
 import (
-	"hello/lesson_19"
+	"hello/lesson_20"
 )
 
 func main() {
-	lesson_19.DoLesson()
+	lesson_20.DoLesson()
 }
